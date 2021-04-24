@@ -1,0 +1,94 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="jayalakshmi">
+    <title>Home Delivered Meals in Chennai</title>
+    <!-- Bootstrap core CSS -->
+    <link href="https://getbootstrap.com/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <meta name="theme-color" content="#7952b3">
+    <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=U9qqN2hIhMcVjhuQ22MXYvakxMTi1qnzj-RI4KOaRY3F5frQC9D3-MupuMTHg8ZmPpWbCNG9aiWMNTQA2MksEw" charset="UTF-8"></script><style type="text/css">
+      th {font-weight:normal;}
+    </style>
+  </head>
+
+  <body>
+    <div class="px-4 py-5 my-5 text-center">
+      <h1 class="display-5 fw-bold">Home delivered Meals in Chennai</h1>
+      <div class="col-lg-6 mx-auto">
+        <p class="lead mb-4">Please see the complete list below or search your area in the search box below</p>
+        <select class="form-select" id="location_list" aria-label="Default select example">
+          <option value="" selected>Select a location</option>
+          <option value="All over Chennai">All over Chennai</option>
+          <option value="Adyar">Adyar</option>
+          <option value="Alwarpet">Alwarpet</option>
+          <option value="Aminjikarai">Aminjikarai</option>
+          <option value="Annanagar">Annanagar</option>
+          <option value="Ashok Nagar">Ashok Nagar</option>
+          <option value="Ayanavaram ">Ayanavaram</option>
+          <option value="Chetpet">Chetpet</option>
+          <option value="Egmore">Egmore</option>
+          <option value="Injambakkam">Injambakkam </option>
+          <option value="Kodambakkam">Kodambakkam</option>
+          <option value="Kolathur">Kolathur</option>
+          <option value="Neelankarai">Neelankarai</option>
+          <option value="Pallavaram">Pallavaram</option>
+          <option value="Parrys">Parrys</option>
+          <option value="Pursaiwakkam">Pursaiwakkam</option>
+          <option value="R A Puram">R A Puram</option>
+          <option value="Srinagar Colony">Srinagar Colony</option>
+          <option value="T. Nagar">T. Nagar</option>
+          <option value="Teynampet">Teynampet</option>
+          <option value="Thiruvanmiyur">Thiruvanmiyur</option>
+          <option value="Villivakkam">Villivakkam</option>
+          <option value="Virugambakkam">Virugambakkam</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="results" class="px-4 py-5 my-5 text-center" style="display:none">
+
+      <h3 class="display-8 fw-bold">List of volunteers</h3>
+      <p class="lead mb-4">Below is the list of people who are available in your selected area</p>
+
+      <div class="col-lg-10 mx-auto">
+        <table id="people" class="table table-condensed table-striped table-responsive"></table>
+      </div>
+    </div>  
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sheetrock/1.1.4/dist/sheetrock.min.js"></script>
+
+  
+
+    <script type="text/javascript">
+      var mySpreadsheet = 'https://docs.google.com/spreadsheets/d/17hTqbQTsBCOrx9k-PbLNnvypn7rubR8Ptqz63UegN2c/edit#gid=77912071';
+
+      function search(val){
+        $('#results').hide();
+        $('#people').empty();
+
+        if(val != ""){
+          query = "select * where lower(C) contains '"+ val.toLowerCase() +"'";
+
+          $('#people').sheetrock({
+            url: mySpreadsheet,
+            query: query,
+            reset: true
+          });
+
+          $('#results').show();
+         }
+        }
+
+    $( document ).ready(function() {
+        $("#location_list").change(function(){
+          var val = $(this).val();
+          search(val);
+        });
+    });
+
+    </script>  
+  </body>
+</html>
